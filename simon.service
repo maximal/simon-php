@@ -1,0 +1,37 @@
+####
+# Running SiMon in background as a current user’s (username) service:
+# 1. Create service dir:   mkdir -p ~/.local/share/systemd/user
+# 2. Create service file:  php  simon.php --service  >  ~/.local/share/systemd/user/simon.service
+# 3. Enable the service:   systemctl --user enable simon
+# 4. Start the service:    systemctl --user start  simon
+# 5. Extend service life:  sudo loginctl enable-linger username
+# 6. Check service logs:   journalctl --user -fu simon
+####
+# Disabling current user’s (username) service:
+# 1. Stop the service:     systemctl --user stop    simon
+# 2. Disable the service:  systemctl --user disable simon
+# 3. Disable lingering:    sudo loginctl disable-linger username
+# 4. Remove service file:  rm  ~/.local/share/systemd/user/simon.service
+####
+
+[Unit]
+Description=SiMon, Linux system monitor in a single PHP file
+StartLimitIntervalSec=60
+StartLimitBurst=4
+
+[Service]
+#ExecStart=/usr/bin/php /path/to/simon/simon.php -c /path/to/simon/config.php -i 15
+ExecStart=/usr/bin/php '/home/username/simon-php/simon.php' -c '/home/username/simon-php/config.php' -i 15
+Restart=on-failure
+RestartSec=1
+# Do not restart on the following exit codes (won’t be successful):
+RestartPreventExitStatus=3 4 5 6 7
+# 1, 2 — general (unknown) codes, service should be restarted
+
+# Hardening
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

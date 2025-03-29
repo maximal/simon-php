@@ -1,0 +1,25 @@
+{
+	"name": "maximal/simon",
+	"description": "SiMon — Linux system monitor in a single PHP file.",
+	"license": "proprietary",
+	"authors": [
+		{
+			"name": "maximal",
+			"email": "almaximal@ya.ru"
+		}
+	],
+	"require": {
+		"php": ">=8.0",
+		"ext-curl": "*"
+	},
+	"require-dev": {
+	},
+	"minimum-stability": "stable",
+	"prefer-stable": true,
+	"config": {
+		"optimize-autoloader": true,
+		"classmap-authoritative": true,
+		"preferred-install": "dist",
+		"sort-packages": true
+	}
+}
