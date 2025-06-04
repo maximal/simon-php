@@ -21,6 +21,10 @@ sudo apt install php-curl
 ```
 
 
+## Grafana Dashboard Example
+![Grafana Dashboard](grafana-dashboard.png)
+
+
 ## Installation
 Clone the repository:
 ```shell
@@ -121,10 +125,6 @@ sudo loginctl disable-linger <username>
 # Remove service file:
 rm  ~/.local/share/systemd/user/simon.service
 ```
-
-
-## Grafana Dashboard
-... ... ... to be continued ... ... ...
 
 
 ## Author
